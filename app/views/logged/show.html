@@ -1,0 +1,23 @@
+<div ng-app = "logged" ng-controller="LoggedController">
+  <div class="row"> 
+    <img ng-src={{user.image}}/> {{user.name}} <a href="/signout">Sign out</a>  - 
+  </div>
+  <div class="row instruction">
+    You can create your own game or join some other game <br/>
+    <button class=>Create new game</button>
+  </div>
+  <div class="row search">
+    <form class="form-search">
+      <input type="text" class="input-medium search-query">
+      <button type="submit" class="btn">Search</button>
+    </form>
+  </div>
+  <div class="row"> 
+    Test {{2 + 2}}
+    <ul >
+      <li ng-repeat="user in logged_users"> 
+	{{user}} 
+      </li>
+    </ul>
+  </div>
+</div>

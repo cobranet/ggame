@@ -49,3 +49,5 @@ group :development, :test do
 end
 
 gem 'omniauth-facebook'
+gem 'thin'
+gem 'faye-rails'

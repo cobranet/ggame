@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   def current_user
      @current_user ||= User.find(session[:user_id]) if session[:user_id]
 
-#     if request.env['HTTP_USER_AGENT'].include?("Firefox")
-#       @current_user = User.find(1)
-#     else
-#       @current_user = User.find(3)
-#     end
+     if request.env['HTTP_USER_AGENT'].include?("Firefox")
+       @current_user = User.find(1)
+     else
+      @current_user = User.find(1)
+     end
 
   end
   helper_method :current_user
