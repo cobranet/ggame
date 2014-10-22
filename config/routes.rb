@@ -14,6 +14,9 @@ Ggame::Application.routes.draw do
   # Example of regular route:
   get 'user/:id' => 'user#show'
   post 'logged/:id/create' => 'logged#create'
+  post 'logged/:id/cancel' => 'logged#cancel'
+  get  'logged/:id/state' => 'logged#state'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
