@@ -15,6 +15,7 @@ Ggame::Application.routes.draw do
   get 'user/:id' => 'user#show'
   post 'logged/:id/create' => 'logged#create'
   post 'logged/:id/cancel' => 'logged#cancel'
+  post 'logged/:id/join' => 'logged#join'
   get  'logged/:id/state' => 'logged#state'
 
 

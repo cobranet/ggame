@@ -8,13 +8,20 @@ appModule.config([
 
 function LoggedController($scope,$http,$location) {
     
-    url = $location.url($location.path());
+    url = $location.absUrl();
+ 
+    $scope.joinGame= function(id) {
+	$http.post(url + '/join/', {ginvid: id}).
+	    success(function(data){
+		$scope.state = data;
+	    });};
+    
     $scope.getState= function(){
 	$http.get(url + '/state').
 	    success(function(data){
 		$scope.state = data;
 	    });};
-
+	
     $scope.createGame = function(){
 	$http.post(url+'/create').
 	    success(function(data){

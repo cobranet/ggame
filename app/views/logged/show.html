@@ -5,22 +5,35 @@
   <div class="row instruction" ng-show='state.showCreate'>
     You can create your own game  <br/>
     <button type="button" ng-click="createGame()"  class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-star"></span> Start game
+      <span class="glyphicon glyphicon-star"></span> Create game
     </button>
   </div>
   
   <div class="row search" ng-show='state.showCreate'>
     Or join some game
     <form class="form-search">
-      <input type="text" class="input-medium search-query">
+      <input type="text" class="input-medium search-query" ng-model="customFilter">
       <button type="submit" class="btn">Search</button>
     </form>
+     
+      <span ng-repeat="game in state.games | filter:customFilter">
+	<img  ng-src={{game.image}}/>{{game.name}}
+	<button id={{game.id}} class="btn" ng-click="joinGame(game.id)"> Join </button> 
+      </span>
   </div>
   
   <div class="row" ng-show='state.showCancel' > 
      Waiting to other players to join... <br>
      <button type="button" ng-click="cancelGame()"  class="btn btn-default btn-lg"><span class="glyphicon glyphicon-bell"></span> 
        Cancel game! 
+     </button>
+  </div>
+  
+  <div class="row" ng-show="state.showApplay" > 
+     Your join to game... waiting to start... <br>
+     <img ng-src={{state.applay.image}}/>- {{state.applay.name}}
+     <button type="button" ng-click="cancelApplay(state.applay.id)"  class="btn btn-default btn-lg"><span class="glyphicon glyphicon-bell"></span> 
+       Cancel waiting for game! 
      </button>
   </div>
   {{state}}

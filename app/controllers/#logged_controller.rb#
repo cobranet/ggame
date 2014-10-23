@@ -38,6 +38,7 @@ class LoggedController < ApplicationController
       s['showCreate'] = false;
       s['showCancel'] = false;
       s['showApplay'] = true;
+      
     end  
     s  
   end
