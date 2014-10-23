@@ -1,0 +1,14 @@
+<div class="row" ng-show="state.showApplicants"> 
+  Aprove or reject Your join to game... waiting to start... <br>
+  <div ng-repeat="app in state.applicants">
+    <img ng-src={{app.image}}/>- {{app.name}}
+    <span ng-if="app.state == 0">
+    <button type="button" ng-click="acceptPlayer(app.id)"  class="btn btn-sm"><span class="glyphicon glyphicon-star"></span> 
+          Accept
+       </button>
+    </span>
+       <button type="button" ng-click="rejectPlayer(app.id)"  class="btn btn-sm"><span class="glyphicon glyphicon-star"></span> 
+          Reject
+       </button>
+     </div>
+  </div>

@@ -8,8 +8,10 @@ appModule.config([
 
 function LoggedController($scope,$http,$location) {
     
+  
     url = $location.absUrl();
- 
+    $scope.user_id = url.split('/')[4];
+    url = '/logged/' + $scope.user_id
     $scope.joinGame= function(id) {
 	$http.post(url + '/join/', {ginvid: id}).
 	    success(function(data){
@@ -29,14 +31,41 @@ function LoggedController($scope,$http,$location) {
 	    });
     };
     
-    $scope.cancelGame = function(){
-
+    $scope.cancelGaame = function(){
 	$http.post(url+'/cancel').
 	    success(function(data){
 		$scope.state = data;
 	    });
     };
+
+    $scope.cancelWaiting = function(gap){
+
+	$http.post(url+'/cancel_waiting',{gameapp:gap}).
+	    success(function(data){
+		$scope.state = data;
+	    });
+    };
     
+    $scope.acceptPlayer = function (gap){
+	alert(gap);
+	$http.post(url+'/accept_player',{gameapp:gap}).
+	    success(function(data){
+		$scope.state = data;
+	    });
+    };
+
+    $scope.rejectPlayer = function (gap){
+	$http.post(url+'/reject_player',{gameapp:gap}).
+	    success(function(data){
+		$scope.state = data;
+	    });
+    };
+	
     $scope.getState();
+    $scope.client = new Faye.Client('/faye');
+    $scope.client.subscribe('/chat/' + $scope.user_id, function(message) {
+	$scope.getState();
+    });
+
 };
 

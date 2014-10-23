@@ -17,6 +17,9 @@ Ggame::Application.routes.draw do
   post 'logged/:id/cancel' => 'logged#cancel'
   post 'logged/:id/join' => 'logged#join'
   get  'logged/:id/state' => 'logged#state'
+  post  'logged/:id/cancel_waiting' => 'logged#cancel_waiting'
+  post  'logged/:id/accept_player' => 'logged#accept_player'
+  post  'logged/:id/reject_player' => 'logged#reject_player'
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

@@ -1,0 +1,7 @@
+  <div class="row" ng-show="state.showApplay" > 
+     Your join to game... waiting to start... <br>
+     <img ng-src={{state.applay.image}}/>- {{state.applay.name}}
+     <button type="button" ng-click="cancelWaiting(state.applay.gapid)"  class="btn btn-default btn-lg"><span class="glyphicon glyphicon-bell"></span> 
+       Cancel waiting for game! 
+     </button>
+  </div>

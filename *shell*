@@ -1,0 +1,68 @@
+cobranet@ubuntu:~/develop/rails/ggame/app/assets/javascripts$ cd ..
+cobranet@ubuntu:~/develop/rails/ggame/app/assets$ cd ..
+cobranet@ubuntu:~/develop/rails/ggame/app$ cd ..
+cobranet@ubuntu:~/develop/rails/ggame$ git add --all
+cobranet@ubuntu:~/develop/rails/ggame$ git commit -m "state working"
+[master 3562226] state working
+ 8 files changed, 96 insertions(+), 22 deletions(-)
+ create mode 100644 app/models/#gameinv.rb#
+ create mode 120000 app/models/.#gameinv.rb
+ create mode 100644 app/views/logged/#show.html#
+ create mode 120000 app/views/logged/.#show.html
+cobranet@ubuntu:~/develop/rails/ggame$ ls app/controllers/
+application_controller.rb  logged_controller.rb~   user_controller.rb~
+concerns                   sessions_controller.rb  welcome_controller.rb
+logged_controller.rb       user_controller.rb
+cobranet@ubuntu:~/develop/rails/ggame$ rm -rf app/controllers/user_controller.rb
+cobranet@ubuntu:~/develop/rails/ggame$ 
+cobranet@ubuntu:~/develop/rails/ggame$ rails g model gameapplication
+      invoke  active_record
+      create    db/migrate/20141023075658_create_gameapplications.rb
+      create    app/models/gameapplication.rb
+      invoke    rspec
+      create      spec/models/gameapplication_spec.rb
+cobranet@ubuntu:~/develop/rails/ggame$ rails db:migrate
+Error: Command 'db:migrate' not recognized
+Did you mean: `$ rake db:migrate` ?
+
+Usage: rails COMMAND [ARGS]
+
+The most common rails commands are:
+ generate    Generate new code (short-cut alias: "g")
+ console     Start the Rails console (short-cut alias: "c")
+ server      Start the Rails server (short-cut alias: "s")
+ dbconsole   Start a console for the database specified in config/database.yml
+             (short-cut alias: "db")
+ new         Create a new Rails application. "rails new my_app" creates a
+             new application called MyApp in "./my_app"
+
+In addition to those, there are:
+ application  Generate the Rails application code
+ destroy      Undo code generated with "generate" (short-cut alias: "d")
+ plugin new   Generates skeleton for developing a Rails plugin
+ runner       Run a piece of code in the application environment (short-cut alias: "r")
+
+All commands can be run with -h (or --help) for more information.
+cobranet@ubuntu:~/develop/rails/ggame$ rake db:migrate
+==  CreateGameapplications: migrating =========================================
+-- create_table(:gameapplications)
+   -> 0.1203s
+==  CreateGameapplications: migrated (0.1205s) ================================
+
+cobranet@ubuntu:~/develop/rails/ggame$ git add --all
+cobranet@ubuntu:~/develop/rails/ggame$ git commit -m "before faye"
+[master 5435f4e] before faye
+ 15 files changed, 161 insertions(+), 16 deletions(-)
+ create mode 100644 app/controllers/#logged_controller.rb#
+ rename app/{models/.#gameinv.rb => controllers/.#logged_controller.rb} (100%)
+ delete mode 100644 app/controllers/user_controller.rb
+ delete mode 100644 app/models/#gameinv.rb#
+ create mode 100644 app/models/gameapplication.rb
+ delete mode 120000 app/views/logged/.#show.html
+ rename app/views/logged/{#show.html# => show.html} (54%)
+ create mode 100644 db/migrate/20141023075658_create_gameapplications.rb
+ create mode 100644 db/migrate/20141023075658_create_gameapplications.rb~
+ create mode 100644 spec/models/gameapplication_spec.rb
+cobranet@ubuntu:~/develop/rails/ggame$ touch app/views/logged/create_game.html.erb
+cobranet@ubuntu:~/develop/rails/ggame$ mv app/views/logged/show.html app/views/logged/show.html.erb
+cobranet@ubuntu:~/develop/rails/ggame$ 
