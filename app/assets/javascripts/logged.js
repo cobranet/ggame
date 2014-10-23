@@ -31,8 +31,8 @@ function LoggedController($scope,$http,$location) {
 	    });
     };
     
-    $scope.cancelGaame = function(){
-	$http.post(url+'/cancel').
+    $scope.cancelGame = function(gameinv_id){
+	$http.post(url+'/cancel',{gameinv_id: gameinv_id} ).
 	    success(function(data){
 		$scope.state = data;
 	    });
@@ -47,7 +47,6 @@ function LoggedController($scope,$http,$location) {
     };
     
     $scope.acceptPlayer = function (gap){
-	alert(gap);
 	$http.post(url+'/accept_player',{gameapp:gap}).
 	    success(function(data){
 		$scope.state = data;
@@ -64,6 +63,9 @@ function LoggedController($scope,$http,$location) {
     $scope.getState();
     $scope.client = new Faye.Client('/faye');
     $scope.client.subscribe('/chat/' + $scope.user_id, function(message) {
+	$scope.getState();
+    });
+    $scope.client.subscribe('/allwaiting', function(message) {
 	$scope.getState();
     });
 

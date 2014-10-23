@@ -75,4 +75,24 @@ cobranet@ubuntu:~/develop/rails/ggame$ touch app/views/logged/_cancel_game.html.
 cobranet@ubuntu:~/develop/rails/ggame$ touch app/views/logged/_show_applay.html.erb
 cobranet@ubuntu:~/develop/rails/ggame$ touch app/views/logged/_show_applicants.html.erb
 cobranet@ubuntu:~/develop/rails/ggame$ rm app/views/logged/_show_applay.html.erb
+cobranet@ubuntu:~/develop/rails/ggame$ git add --all
+cobranet@ubuntu:~/develop/rails/ggame$ git commit -m "faye working"
+[master bcf1d25] faye working
+ 22 files changed, 335 insertions(+), 66 deletions(-)
+ create mode 100644 #*shell*#
+ create mode 100644 *shell*
+ rename app/controllers/.#logged_controller.rb => .#*shell* (100%)
+ delete mode 100644 app/controllers/#logged_controller.rb#
+ create mode 100644 app/views/logged/_cancel_game.html.erb
+ rename app/views/logged/{show.html~ => _cancel_game.html.erb~} (100%)
+ create mode 100644 app/views/logged/_create_game.html.erb
+ create mode 100644 app/views/logged/_create_game.html.erb~
+ create mode 100644 app/views/logged/_join_game.html.erb
+ create mode 100644 app/views/logged/_join_game.html.erb~
+ create mode 100644 app/views/logged/_show_applay.html.erb~
+ create mode 100644 app/views/logged/_show_applicants.html.erb
+ create mode 100644 app/views/logged/_show_applicants.html.erb~
+ create mode 100644 app/views/logged/show.html.erb
+ rename app/views/logged/{show.html => show.html.erb~} (96%)
+cobranet@ubuntu:~/develop/rails/ggame$ touch app/views/logged/_show_game_state.html.erb
 cobranet@ubuntu:~/develop/rails/ggame$ 

@@ -6,7 +6,9 @@ class LoggedController < ApplicationController
     gi = Gameinv.new
     gi.user_id = params[:id] 
     gi.save!
+    FayeRails::Controller.publish("/allwaiting",{message: 'nesto'})    
     render :json => state_json
+  
   end
 
   def join
@@ -27,18 +29,21 @@ class LoggedController < ApplicationController
     ga = Gameapplication.find(gap) 
     ga.state = 1
     ga.save!
-    FayeRails::Controller.publish("/chat/#{ga.user_id}",{message: 'nesto'})    
-    render :json => state
+    Gameapplication.where(gameinv_id: ga.gameinv_id).each do |app|
+      FayeRails::Controller.publish("/chat/#{app.user_id}",{message: 'nesto'})    
+    end  
+    render :json => state_json
   end
 
   def reject_player
     gap = params[:gameapp].to_i
     ga = Gameapplication.find(gap) 
     ginv = Gameinv.find(ga.gameinv_id)
-    user = User.find(Gameinv.find(ginv).user_id)
+    Gameapplication.where(gameinv_id: ga.gameinv_id).each do |app| 
+      FayeRails::Controller.publish("/chat/#{app.user_id}",{message: 'nesto'})    
+    end
     Gameapplication.delete(gap)
-    FayeRails::Controller.publish("/chat/#{user.id}",{message: 'nesto'})    
-    render :json => state
+    render :json => state_json
   end
 
   def cancel_waiting
@@ -58,6 +63,7 @@ class LoggedController < ApplicationController
     gi = Gameinv.where(user_id: current_user.id).first
     if gi
       s['applicants'] = Gameinv.applicants(gi.id)
+      s['gameinv_id'] = gi.id
     end
     applay = Gameinv.game_applay(current_user.id)
     puts "###################################################"
@@ -93,7 +99,16 @@ class LoggedController < ApplicationController
   end
   
   def cancel 
-    Gameinv.where(user_id: current_user.id).destroy_all
+    gameinv_id = params[:gameinv_id].to_i
+    Gameinv.where(id: gameinv_id).destroy_all
+    Gameapplication.where(gameinv_id: gameinv_id).each do |app|
+      puts "cance"
+      puts app.id
+      puts "###########################################"
+      FayeRails::Controller.publish("/chat/#{app.user_id}",{message: 'nesto'})    
+      Gameapplication.delete(app.id)
+    end
+    FayeRails::Controller.publish("/allwaiting",{message: 'nesto'})    
     render :json => state_json
   end  
 end

@@ -6,28 +6,6 @@
   <%= render 'join_game' %>
   <%= render 'cancel_game' %>  
   <%= render 'show_applicants' %>
-  <div id="stateOfGame" class="row" ng-show="state.showGameState">
-    In game:
-    <div>
-      <img ng-src={{state.applay.image}}/>
-      <span ng-repeat="app in state.applicants"> 
-        <span ng-if="app.state == 1">
-	  <img ng-src={{app.image}}>
-        <span> 
-      </span> 
-  <button type="button" ng-click="cancelWaiting(state.applay.gapid)"  class="btn btn-sm"><span class="glyphicon glyphicon-bell"></span> 
-       Cancel waiting for game! 
-     </button>
-    </div>
-    Waiting:
-    <div>
-       <span ng-repeat="app in state.applicants"> 
-        <span ng-if="app.state == 0">
-	  <img ng-src={{app.image}}>
-        <span> 
-      </span> 
-    </div>
+  <%= render 'show_game_state' %>  
 
-  </div>  
-  {{state}}
 </div>
